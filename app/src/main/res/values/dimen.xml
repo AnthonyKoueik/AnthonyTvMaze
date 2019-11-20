@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacing">8dp</dimen>
+    <dimen name="app_bar_height">296dp</dimen>
+    <dimen name="app_bar_height_with_fit_system_windows">256dp</dimen>
+</resources>
