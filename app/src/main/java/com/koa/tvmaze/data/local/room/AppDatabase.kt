@@ -5,10 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.koa.tvmaze.data.entity.Show
 import com.koa.tvmaze.data.entity.TvShows
-import com.koa.tvmaze.data.entity.typeconverter.ExternalsTypeConverter
-import com.koa.tvmaze.data.entity.typeconverter.ImageTypeConverter
-import com.koa.tvmaze.data.entity.typeconverter.LinksXTypeConverter
-import com.koa.tvmaze.data.entity.typeconverter.ListConverters
+import com.koa.tvmaze.data.entity.typeconverter.*
 
 /**
  * Created by ANTHONY KOUEIK on 7/18/2019.
@@ -17,7 +14,7 @@ import com.koa.tvmaze.data.entity.typeconverter.ListConverters
 @Database(entities = [TvShows::class], version = 1)
 @TypeConverters(
     ListConverters::class, ExternalsTypeConverter::class,
-    LinksXTypeConverter::class, ImageTypeConverter::class
+    LinksXTypeConverter::class, ImageTypeConverter::class, RatingTypeConverter::class
 )
 abstract class AppDatabase : RoomDatabase() {
 

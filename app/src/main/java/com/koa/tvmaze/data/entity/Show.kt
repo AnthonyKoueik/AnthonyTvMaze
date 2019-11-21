@@ -8,6 +8,7 @@ import androidx.room.TypeConverters
 import com.koa.tvmaze.data.entity.typeconverter.ExternalsTypeConverter
 import com.koa.tvmaze.data.entity.typeconverter.ImageTypeConverter
 import com.koa.tvmaze.data.entity.typeconverter.LinksXTypeConverter
+import com.koa.tvmaze.data.entity.typeconverter.RatingTypeConverter
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -16,15 +17,18 @@ data class Show(
     @ColumnInfo(name = "show_table_id")
     val id: Int?,
 
-    @ColumnInfo(name = "show_table_links")
+   /* @ColumnInfo(name = "show_table_links")
     @TypeConverters(LinksXTypeConverter::class)
-    val _links: LinksX,
+    val _links: LinksX,*/
 
 
     @ColumnInfo(name = "show_table_externals")
     @TypeConverters(ExternalsTypeConverter::class)
     val externals: Externals,
 
+    @ColumnInfo(name = "show_table_rating")
+    @TypeConverters(RatingTypeConverter::class)
+    val rating: Rating?,
 
     @ColumnInfo(name = "show_table_image")
     @TypeConverters(ImageTypeConverter::class)

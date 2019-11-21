@@ -17,7 +17,7 @@ class DetailActivityViewModel @Inject constructor() : ViewModel() {
     val liveData = MutableLiveData<DataResource<Show>>()
 
     lateinit var show: Show
-
+    lateinit var mainSummary: String
 
     fun getShow(){
         liveData.value = DataResource.success(show)

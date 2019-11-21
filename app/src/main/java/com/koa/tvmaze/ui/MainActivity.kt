@@ -63,8 +63,12 @@ class MainActivity : BaseActivity<MainActivityViewModel>() {
 
         newsAdapter.onItemClick = { item ->
 
-            if (item is TvShows)
-                startActivity(DetailActivity.newIntent(baseContext, item.show))
+            if (item is TvShows) {
+                if (item.summary != null)
+                    startActivity(DetailActivity.newIntent(baseContext, item.show, item.summary))
+                else
+                    startActivity(DetailActivity.newIntent(baseContext, item.show, "Season " + item.season))
+            }
         }
     }
 

@@ -2,14 +2,14 @@ package com.koa.tvmaze.ui.detail
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import android.text.format.DateUtils
+import android.text.Html
 import android.view.View
 import androidx.lifecycle.Observer
 import com.koa.tvmaze.base.BaseActivity
 import com.koa.tvmaze.data.Status
 import com.koa.tvmaze.data.entity.Show
-import com.koa.tvmaze.utils.getDate
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.content_scrolling.*
 
@@ -29,12 +29,13 @@ class DetailActivity : BaseActivity<DetailActivityViewModel>() {
     companion object {
 
         const val EXTRA_SHOW = "show-extra"
-
+        const val EXTRA_SUM = "show-summary"
         /* Passing the whole Model in the Intent
         * Will try to add a local Db later if i have time*/
-        fun newIntent(context: Context, show: Show): Intent {
+        fun newIntent(context: Context, show: Show,  summary: String?): Intent {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra(EXTRA_SHOW, show)
+            intent.putExtra(EXTRA_SUM, summary)
             return intent
         }
     }
@@ -50,6 +51,7 @@ class DetailActivity : BaseActivity<DetailActivityViewModel>() {
 
         /* reading the model from the Intent*/
         viewModel.show = intent.getParcelableExtra(EXTRA_SHOW)
+        viewModel.mainSummary = intent.getStringExtra(EXTRA_SUM)
 
         viewModel.liveData.observe(this, Observer { show ->
             when (show.status) {
@@ -64,31 +66,41 @@ class DetailActivity : BaseActivity<DetailActivityViewModel>() {
                             tv_title_header.text = title
                         }
 
-                        it?.status?.let { author ->
+                        it?.status?.let { status ->
                             tv_author.visibility = View.VISIBLE
-                            tv_author.text = author
+                            tv_author.text = status
                         }
 
-                        it?.officialSite?.let { source ->
+                        it?.rating?.let { rating ->
                             tv_source.visibility = View.VISIBLE
-                            tv_source.text = source
+                            tv_source.text = "Rating " + rating.average
                         }
 
-                        it?.summary?.let { description ->
+                        viewModel.mainSummary?.let { description ->
                             tv_description.visibility = View.VISIBLE
-                            tv_description.text = description
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                tv_description.text =
+                                    Html.fromHtml(description, Html.FROM_HTML_MODE_COMPACT)
+                            } else {
+                                tv_description.text = Html.fromHtml(description)
+                            }
                         }
 
-                        it?.updated?.let { publishedAt ->
+                        it?.premiered?.let { premiered ->
                             tv_time.visibility = View.VISIBLE
-                            tv_time.text = publishedAt.toString()/*DateUtils.getRelativeTimeSpanString(getDate(publishedAt,
+                            tv_time.text = "Premiered " + premiered/*DateUtils.getRelativeTimeSpanString(getDate(publishedAt,
                                     "yyyy-MM-dd'T'HH:mm:ss").time, System.currentTimeMillis(),
                                     DateUtils.HOUR_IN_MILLIS)*/
                         }
 
                         it?.summary?.let { summary ->
                             tv_content.visibility = View.VISIBLE
-                            tv_content.text = summary
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                tv_content.text =
+                                    Html.fromHtml(summary, Html.FROM_HTML_MODE_COMPACT)
+                            } else {
+                                tv_content.text = Html.fromHtml(summary)
+                            }
                         }
                     }
                 }
