@@ -11,7 +11,10 @@ import com.koa.tvmaze.data.DataResource
 import com.koa.tvmaze.data.Status
 import com.koa.tvmaze.data.entity.TvShows
 import com.koa.tvmaze.ui.detail.DetailActivity
+import com.koa.tvmaze.utils.ConnectionDetector
 import com.koa.tvmaze.utils.SpacesItemDecoration
+import com.koa.tvmaze.utils.getCurrentDateTime
+import com.koa.tvmaze.utils.toString
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
@@ -24,6 +27,8 @@ class MainActivity : BaseActivity<MainActivityViewModel>() {
     override fun getViewModel(): Class<MainActivityViewModel> = MainActivityViewModel::class.java
 
     private lateinit var newsAdapter: NewsAdapter
+
+    lateinit var cd: ConnectionDetector
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,10 +57,21 @@ class MainActivity : BaseActivity<MainActivityViewModel>() {
             Timber.i(apiResponse.message)
         })
 
-        viewModel.loadTopNews("US", "2019-10-10", false)
+        cd = ConnectionDetector()
+
+
+        val date = getCurrentDateTime()
+        val dateInString = date.toString("yyyy-MM-dd")
+        if (cd.isConnectingToInternet(this@MainActivity)) {
+            viewModel.loadTopNews("US", dateInString, true)
+        } else {
+            viewModel.loadTopNews("US", dateInString, false)
+        }
 
         sw_refresher.setOnRefreshListener {
-            viewModel.loadTopNews("US", "2019-10-10", true)
+            val date = getCurrentDateTime()
+            val dateInString = date.toString("yyyy-MM-dd")
+            viewModel.loadTopNews("US", dateInString, true)
         }
     }
 
@@ -67,7 +83,13 @@ class MainActivity : BaseActivity<MainActivityViewModel>() {
                 if (item.summary != null)
                     startActivity(DetailActivity.newIntent(baseContext, item.show, item.summary))
                 else
-                    startActivity(DetailActivity.newIntent(baseContext, item.show, "Season " + item.season))
+                    startActivity(
+                        DetailActivity.newIntent(
+                            baseContext,
+                            item.show,
+                            "Season " + item.season
+                        )
+                    )
             }
         }
     }
