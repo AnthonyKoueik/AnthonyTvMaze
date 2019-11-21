@@ -66,7 +66,6 @@ class DetailActivity : BaseActivity<DetailActivityViewModel>() {
                             .centerCrop() //4
                             .into(header_image_view) //8
 
-
                         it?.name?.let { title ->
                             tv_title_header.visibility = View.VISIBLE
                             tv_title_header.text = title

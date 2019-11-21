@@ -4,12 +4,17 @@ import android.app.Activity
 import android.content.Context
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
+import com.facebook.common.logging.FLog
 import com.facebook.drawee.backends.pipeline.Fresco
+import com.facebook.imagepipeline.core.ImagePipelineConfig
+import com.facebook.imagepipeline.listener.RequestListener
+import com.facebook.imagepipeline.listener.RequestLoggingListener
 import com.koa.tvmaze.di.DaggerAppComponent
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import timber.log.Timber
 import javax.inject.Inject
+
 
 /**
  * Created by ANTHONY KOUEIK on 7/15/2019.
@@ -34,7 +39,14 @@ class MyApplication : MultiDexApplication(), HasActivityInjector {
         instance = this
 
         // Initialize Fresco
-        Fresco.initialize(this)
+
+        val requestListeners: MutableSet<RequestListener> = HashSet()
+        requestListeners.add(RequestLoggingListener())
+        val config = ImagePipelineConfig.newBuilder(this) // other setters
+            .setRequestListeners(requestListeners)
+            .build()
+        Fresco.initialize(this, config)
+        FLog.setMinimumLoggingLevel(FLog.VERBOSE)
 
         // Initialize Debugger
         if (BuildConfig.DEBUG) {
@@ -47,5 +59,6 @@ class MyApplication : MultiDexApplication(), HasActivityInjector {
         MultiDex.install(this)
     }
 
-    override fun activityInjector(): DispatchingAndroidInjector<Activity> = activityDispatchingInjector
+    override fun activityInjector(): DispatchingAndroidInjector<Activity> =
+        activityDispatchingInjector
 }

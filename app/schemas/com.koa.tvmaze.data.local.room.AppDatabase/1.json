@@ -1,0 +1,178 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "bcf940c76d7ac46fb4f3fdf46bc0031f",
+    "entities": [
+      {
+        "tableName": "tv_shows",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`tv_shows_id` INTEGER, `tvshowairdate` TEXT, `tvshowairtime` TEXT, `tvshowairstamp` TEXT, `tvshowname` TEXT, `tvshownumber` INTEGER, `tvshowruntime` INTEGER, `tvshowseason` INTEGER, `tvshowsummary` TEXT, `tvshowurl` TEXT, `show_table_id` INTEGER, `show_table_externals` TEXT NOT NULL, `show_table_rating` TEXT, `show_table_image` TEXT, `show_table_language` TEXT, `show_table_name` TEXT, `show_table_officialSite` TEXT, `show_table_premiered` TEXT, `show_table_runtime` INTEGER, `show_table_status` TEXT, `show_table_summary` TEXT, `show_table_type` TEXT, `show_table_updated` INTEGER, `show_table_url` TEXT, `show_table_weight` INTEGER, PRIMARY KEY(`tv_shows_id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "tv_shows_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "airdate",
+            "columnName": "tvshowairdate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "airtime",
+            "columnName": "tvshowairtime",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "airstamp",
+            "columnName": "tvshowairstamp",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "tvshowname",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "number",
+            "columnName": "tvshownumber",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "runtime",
+            "columnName": "tvshowruntime",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "season",
+            "columnName": "tvshowseason",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "summary",
+            "columnName": "tvshowsummary",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "tvshowurl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "show.id",
+            "columnName": "show_table_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "show.externals",
+            "columnName": "show_table_externals",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "show.rating",
+            "columnName": "show_table_rating",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "show.image",
+            "columnName": "show_table_image",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "show.language",
+            "columnName": "show_table_language",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "show.name",
+            "columnName": "show_table_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "show.officialSite",
+            "columnName": "show_table_officialSite",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "show.premiered",
+            "columnName": "show_table_premiered",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "show.runtime",
+            "columnName": "show_table_runtime",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "show.status",
+            "columnName": "show_table_status",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "show.summary",
+            "columnName": "show_table_summary",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "show.type",
+            "columnName": "show_table_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "show.updated",
+            "columnName": "show_table_updated",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "show.url",
+            "columnName": "show_table_url",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "show.weight",
+            "columnName": "show_table_weight",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "tv_shows_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"bcf940c76d7ac46fb4f3fdf46bc0031f\")"
+    ]
+  }
+}
