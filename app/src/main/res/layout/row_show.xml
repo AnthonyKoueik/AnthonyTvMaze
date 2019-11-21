@@ -22,7 +22,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:placeholderImage="@android:color/black"
-            app:viewAspectRatio="1.1" />
+            app:viewAspectRatio="0.7" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/row_tv_title"
