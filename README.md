@@ -1,6 +1,6 @@
 ## NewsApp
 
-The Application is a News Feed based on newsapi.org where you can search worldwide news
+The Application based on TV Mazed API
 
 # Language
 Kotlin Programming Language.
