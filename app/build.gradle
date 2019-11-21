@@ -82,6 +82,9 @@ dependencies {
     implementation deps.reactivex.rxjava2
     implementation deps.reactivex.rxandroid
 
+    // Glide
+    implementation deps.glide.runtime
+    kapt deps.glide.compiler
 
     implementation(deps.facebook.fresco)/* {
         exclude group: 'com.parse.bolts', module: 'bolts-applinks';

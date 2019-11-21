@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.Html
 import android.view.View
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.koa.tvmaze.base.BaseActivity
 import com.koa.tvmaze.data.Status
 import com.koa.tvmaze.data.entity.Show
@@ -59,7 +60,12 @@ class DetailActivity : BaseActivity<DetailActivityViewModel>() {
                 Status.SUCCESS -> {
                     show.data.let {
 
-                        header_image_view.run { setImageURI(it?.image?.original) }
+                        val url = it?.image?.original //1
+                        Glide.with(this)  //2
+                            .load(url) //3
+                            .centerCrop() //4
+                            .into(header_image_view) //8
+
 
                         it?.name?.let { title ->
                             tv_title_header.visibility = View.VISIBLE
