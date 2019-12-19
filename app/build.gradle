@@ -38,6 +38,24 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+
+    flavorDimensions "default"
+
+    productFlavors {
+        qa {
+            dimension "default"
+            applicationId "com.koa.tvmaze.test"
+
+
+        }
+
+        production {
+            dimension "default"
+            applicationId "com.koa.tvmaze"
+
+        }
+
+    }
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
