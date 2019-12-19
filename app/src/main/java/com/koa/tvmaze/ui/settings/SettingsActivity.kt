@@ -2,6 +2,7 @@ package com.koa.tvmaze.ui.settings
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.koa.tvmaze.R
 
 class SettingsActivity : AppCompatActivity() {
 

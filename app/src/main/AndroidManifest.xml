@@ -3,7 +3,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         package="com.koa.tvmaze">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -18,12 +18,16 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ui.settings.SettingsActivity"></activity>
         <activity android:name=".ui.ImageActivity">
-             <!--<intent-filter>
+
+            <!--
+             <intent-filter>
                  <action android:name="android.intent.action.MAIN" />
 
                  <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>-->
+             </intent-filter>
+            -->
         </activity>
         <activity android:name=".ui.MainActivity">
             <intent-filter>
